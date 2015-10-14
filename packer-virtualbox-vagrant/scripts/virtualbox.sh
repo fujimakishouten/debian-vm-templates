@@ -21,5 +21,11 @@ if test -f .vbox_version ; then
   rm -f VBoxGuestAdditions.iso
 
   # Start the newly build driver
+  if [ ! -f /etc/init.d/vboxadd ]; then
+    vboxadd=$(find /opt -name vboxadd | head -n 1)
+    if [ -f "$vboxadd" ]; then
+      ln -s $vboxadd /etc/init.d
+    fi
+  fi
   /etc/init.d/vboxadd start
 fi
