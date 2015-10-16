@@ -22,7 +22,7 @@
          "guest_os_type" : "Debian_64",
          "headless" : false,
          "http_directory" : "http",
-         "iso_checksum" : "f13ce88bb5808fa7e5a54652a6ecf304ea63338d7e447f209d3844429026015b9b90de0ef44281b0f59c5b7b1e81d39a0b27c791a18cd79d06ba170938bc5179",
+         "iso_checksum" : "b8cd2111d10d5d496e2051caefaf5ef29f9a53aee9731e84406a93b8b9f0d8e2459b472b04ce7cfd3f10aa25683181a42ddc9fd79f0ebf40132e73230ea1ff47",
          "iso_checksum_type" : "sha512",
          "iso_url" : "http://cdimage.debian.org/cdimage/daily-builds/daily/arch-latest/amd64/iso-cd/debian-testing-amd64-netinst.iso",
          "shutdown_command" : "sudo /sbin/halt -p",
@@ -49,20 +49,23 @@
       }
    ],
    "post-processors" : [
-     [{
-        "type": "vagrant",
-        "keep_input_artifact": true
-     }, {
-        "type" : "atlas",
-        "token": "{{user `atlas_token`}}",
-        "artifact" : "fujimakishouten/debian-9-testing-virtualbox",
-        "artifact_type": "vagrant.box",
-        "metadata": {
-            "provider" : "virtualbox",
-            "version" : "9.0.0.20151006",
-            "description": "Debian stretch 2015.10.06"
-        }
-     }]
+      [
+         {
+            "keep_input_artifact" : true,
+            "type" : "vagrant"
+         },
+         {
+            "artifact" : "fujimakishouten/debian-9-testing-virtualbox",
+            "artifact_type" : "vagrant.box",
+            "metadata" : {
+               "description" : "Debian stretch 2015.10.19",
+               "provider" : "virtualbox",
+               "version" : "9.0.0.20151019"
+            },
+            "token" : "{{user `atlas_token`}}",
+            "type" : "atlas"
+         }
+      ]
    ],
    "provisioners" : [
       {
