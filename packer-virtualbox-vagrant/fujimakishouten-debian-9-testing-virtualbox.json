@@ -22,7 +22,7 @@
          "guest_os_type" : "Debian_64",
          "headless" : false,
          "http_directory" : "http",
-         "iso_checksum" : "5062388ddbd37578fb938b7d8e0890bf76865247df488205dad2468d1d4212c1a7a0c482d5a1337fb8d6f92291af841e37b896c5b98dc949493c6f3b4c9f4c58",
+         "iso_checksum" : "4a10576c4f51194d7db6303078250999b0465385ba01b5bdc5320f9756b6361b55e4332b07abc2b55c2ac34666db33150ea05709e39ee3ed8e6d7fb15c77f239",
          "iso_checksum_type" : "sha512",
          "iso_url" : "http://cdimage.debian.org/cdimage/daily-builds/daily/arch-latest/amd64/iso-cd/debian-testing-amd64-netinst.iso",
          "shutdown_command" : "sudo /sbin/halt -p",
@@ -58,9 +58,9 @@
             "artifact" : "fujimakishouten/debian-9-testing-virtualbox",
             "artifact_type" : "vagrant.box",
             "metadata" : {
-               "description" : "Debian stretch 2015.10.27",
+               "description" : "Debian stretch 2015.10.28",
                "provider" : "virtualbox",
-               "version" : "9.0.0.20151027"
+               "version" : "9.0.0.20151028"
             },
             "token" : "{{user `atlas_token`}}",
             "type" : "atlas"
