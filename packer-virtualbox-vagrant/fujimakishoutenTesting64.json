@@ -1,0 +1,90 @@
+{
+   "builders" : [
+      {
+         "boot_command" : [
+            "<esc><wait>",
+            "install <wait>",
+            "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/vanilla-debian-8-jessie-preseed.cfg <wait>",
+            "debian-installer=en_US <wait>",
+            "auto <wait>",
+            "locale=en_US <wait>",
+            "kbd-chooser/method=us <wait>",
+            "netcfg/get_hostname={{ .Name }} <wait>",
+            "netcfg/get_domain=vagrantup.com <wait>",
+            "fb=false <wait>",
+            "debconf/frontend=noninteractive <wait>",
+            "console-setup/ask_detect=false <wait>",
+            "console-keymaps-at/keymap=us <wait>",
+            "keyboard-configuration/xkb-keymap=us <wait>",
+            "<enter><wait>"
+         ],
+         "disk_size" : "10140",
+         "guest_os_type" : "Debian_64",
+         "hard_drive_interface" : "sata",
+         "headless" : false,
+         "http_directory" : "http",
+         "iso_checksum" : "28bce00774a203de771d5d663023febe5973dcefe6789e4d3ed20612282c01e55c0dbee96bdf6a9ead3a089c070b697f6ebd44f0331d82dbf51b95d6289011d9",
+         "iso_checksum_type" : "sha512",
+         "iso_url" : "http://cdimage.debian.org/cdimage/daily-builds/daily/arch-latest/amd64/iso-cd/debian-testing-amd64-netinst.iso",
+         "shutdown_command" : "sudo /sbin/halt -p",
+         "ssh_password" : "vagrant",
+         "ssh_port" : "22",
+         "ssh_username" : "vagrant",
+         "ssh_wait_timeout" : "10000s",
+         "type" : "virtualbox-iso",
+         "vboxmanage" : [
+            [
+               "modifyvm",
+               "{{.Name}}",
+               "--memory",
+               "512"
+            ],
+            [
+               "modifyvm",
+               "{{.Name}}",
+               "--cpus",
+               "1"
+            ]
+         ],
+         "vm_name" : "debian-testing"
+      }
+   ],
+   "post-processors" : [
+      [
+         {
+            "keep_input_artifact" : true,
+            "type" : "vagrant"
+         },
+         {
+            "artifact" : "fujimakishouten/debian-stretch64",
+            "artifact_type" : "vagrant.box",
+            "metadata" : {
+               "description" : "Debian stretch 2015.12.29",
+               "provider" : "virtualbox",
+               "version" : "9.0.0.20151229"
+            },
+            "token" : "{{user `atlas_token`}}",
+            "type" : "atlas"
+         }
+      ]
+   ],
+   "provisioners" : [
+      {
+         "execute_command" : "echo 'vagrant'|sudo -S sh '{{.Path}}'",
+         "override" : {
+            "virtualbox-iso" : {
+               "scripts" : [
+                  "scripts/base.sh",
+                  "scripts/vagrant.sh",
+                  "scripts/virtualbox.sh",
+                  "scripts/cleanup.sh",
+                  "scripts/minimize.sh"
+               ]
+            }
+         },
+         "pause_before" : "5s",
+         "type" : "shell"
+      }
+   ]
+}
+
