@@ -3,15 +3,15 @@
     "variables" : {
         "atlas_token" : "{{env `ATLAS_TOKEN`}}",
         "box_changelog" : "Daily build",
-        "box_version" : "9.0.0-rc2.20174210",
-        "description" : "Debian stretch RC2 2017.04.10",
+        "box_version" : "9.0.0.20170418",
+        "description" : "Debian stretch RC3 2017.04.18",
         "vm_name" : "debian-testing"
     },
     "builders" : [{
-        "boot_command" : [
+        "boot_command": [
             "<esc><wait>",
             "install <wait>",
-            "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/testing-preseed.cfg <wait>",
+            "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/stretch-preseed.cfg <wait>",
             "auto <wait>",
             "locale=en_US <wait>",
             "kbd-chooser/method=us <wait>",
@@ -22,6 +22,7 @@
             "console-setup/ask_detect=false <wait>",
             "console-keymaps-at/keymap=us <wait>",
             "keyboard-configuration/xkb-keymap=us <wait>",
+            "net.ifnames=0 <wait>",
             "<enter><wait>"
         ],
         "disk_size" : "10140",
@@ -29,7 +30,7 @@
         "hard_drive_interface" : "sata",
         "headless" : false,
         "http_directory" : "http",
-        "iso_checksum" : "89b98269f8eb365b953c927590be46690fec55695d7bd16884d18b15a5acf0e5bea1de7cd0b53fa2561139bd7674f1dbd732d15bc750b269c6cbd00ebeb5043b",
+        "iso_checksum" : "46a770bb8de9e90f34fe504959e290b0bdab905c61ccc975fbf91f47aef952fb7ea70d80d1c89a421189a673c9e37c6fd6a3d21db507805ecdc319e8f3928f11",
         "iso_checksum_type" : "sha512",
         "iso_url" : "http://cdimage.debian.org/cdimage/daily-builds/daily/arch-latest/amd64/iso-cd/debian-testing-amd64-netinst.iso",
         "shutdown_command" : "sudo /sbin/halt -p",
