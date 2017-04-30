@@ -3,8 +3,8 @@
     "variables" : {
         "atlas_token" : "{{env `ATLAS_TOKEN`}}",
         "box_changelog" : "Daily build",
-        "box_version" : "9.0.0.20170418",
-        "description" : "Debian stretch RC3 2017.04.18",
+        "box_version" : "9.0.0.20170529",
+        "description" : "Debian stretch RC3 2017.05.29",
         "vm_name" : "debian-testing"
     },
     "builders" : [{
@@ -30,7 +30,7 @@
         "hard_drive_interface" : "sata",
         "headless" : false,
         "http_directory" : "http",
-        "iso_checksum" : "46a770bb8de9e90f34fe504959e290b0bdab905c61ccc975fbf91f47aef952fb7ea70d80d1c89a421189a673c9e37c6fd6a3d21db507805ecdc319e8f3928f11",
+        "iso_checksum" : "15684ff6c0e6ad5733b03d0df682341ef1f2c88c06a70acaf5477c9f1b10676e6ec44513be58c7d318d278eac4764d5b6af871ea10f19726c43d96579ba69247<Paste>",
         "iso_checksum_type" : "sha512",
         "iso_url" : "http://cdimage.debian.org/cdimage/daily-builds/daily/arch-latest/amd64/iso-cd/debian-testing-amd64-netinst.iso",
         "shutdown_command" : "sudo /sbin/halt -p",
