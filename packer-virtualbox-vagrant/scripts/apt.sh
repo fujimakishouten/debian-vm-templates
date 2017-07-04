@@ -5,7 +5,7 @@ deb http://httpredir.debian.org/debian sid main contrib
 deb-src http://httpredir.debian.org/debian sid main contrib
 EOS
 
-echo 'APT::Default-Release "stretch";' > /etc/apt/apt.conf.d/99target
+echo 'APT::Default-Release "buster";' > /etc/apt/apt.conf.d/99target
 
 apt-get update
 

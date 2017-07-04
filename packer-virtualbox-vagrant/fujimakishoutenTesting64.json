@@ -1,11 +1,12 @@
 {
-    "description": "Contrib Debian Jessie base box, build using contrib sources",
+    "description": "Fujimakishouten Debian Buster base box",
     "variables" : {
         "atlas_token" : "{{env `ATLAS_TOKEN`}}",
+        "box_tag": "fujimakishouten/debian-buster64",
         "box_changelog" : "Daily build",
-        "box_version" : "9.0.0.20170529",
-        "description" : "Debian stretch RC3 2017.05.29",
-        "vm_name" : "debian-testing"
+        "box_version" : "10.0.0.20170704",
+        "description" : "Debian buster 2017.07.04",
+        "vm_name" : "debian-buster"
     },
     "builders" : [{
         "boot_command": [
@@ -14,12 +15,11 @@
             "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/stretch-preseed.cfg <wait>",
             "auto <wait>",
             "locale=en_US <wait>",
-            "kbd-chooser/method=us <wait>",
             "netcfg/get_hostname={{ .Name }} <wait>",
-            "netcfg/get_domain=vagrantup.com <wait>",
-            "fb=false <wait>",
+            "netcfg/get_domain=localdomain <wait>",
             "debconf/frontend=noninteractive <wait>",
             "console-setup/ask_detect=false <wait>",
+            "kbd-chooser/method=us <wait>",
             "console-keymaps-at/keymap=us <wait>",
             "keyboard-configuration/xkb-keymap=us <wait>",
             "net.ifnames=0 <wait>",
@@ -30,27 +30,30 @@
         "hard_drive_interface" : "sata",
         "headless" : false,
         "http_directory" : "http",
-        "iso_checksum" : "15684ff6c0e6ad5733b03d0df682341ef1f2c88c06a70acaf5477c9f1b10676e6ec44513be58c7d318d278eac4764d5b6af871ea10f19726c43d96579ba69247<Paste>",
+        "iso_checksum" : "c0dcf7c40620308f22c0802da0354591e1ba5c33ac005f7a587a06acc8a5effe83d4bda0498a2f5703ae1a7aa0d5aa903e7d4e76177d9ad91117dea1cebbb6cb",
         "iso_checksum_type" : "sha512",
-        "iso_url" : "http://cdimage.debian.org/cdimage/daily-builds/daily/arch-latest/amd64/iso-cd/debian-testing-amd64-netinst.iso",
+        "iso_url" : "https://cdimage.debian.org/cdimage/daily-builds/daily/arch-latest/amd64/iso-cd/debian-testing-amd64-netinst.iso",
         "shutdown_command" : "sudo /sbin/halt -p",
         "ssh_password" : "vagrant",
-        "ssh_port" : "22",
         "ssh_username" : "vagrant",
+        "ssh_port" : "22",
         "ssh_wait_timeout" : "10000s",
         "type" : "virtualbox-iso",
         "vboxmanage" : [
             ["modifyvm", "{{.Name}}", "--memory", "512"],
             ["modifyvm", "{{.Name}}", "--cpus", "1"]
          ],
+        "output_directory": "buster.build",
         "vm_name" : "{{user `vm_name`}}"
     }],
     "provisioners" : [{
+        "pause_before" : "5s",
+        "type" : "shell",
+        "execute_command" : "echo 'vagrant'| {{.Vars}} sudo --preserve-env --stdin sh '{{.Path}}'",
         "environment_vars" : [
             "VAGRANT_BUILDER_FS=/",
             "VAGRANT_BUILDER_HOSTNAME={{user `vm_name`}}"
         ],
-        "execute_command" : "echo 'vagrant'| {{.Vars}} sudo --preserve-env --stdin sh '{{.Path}}'",
         "override" : {
             "virtualbox-iso" : {
                 "scripts" : [
@@ -60,25 +63,15 @@
                     "scripts/minimize.sh"
                 ]
             }
-        },
-        "pause_before" : "5s",
-        "type" : "shell"
-    }],
-    "post-processors" : [[
-        {
-            "keep_input_artifact" : true,
-            "type" : "vagrant"
-        }, {
-            "artifact" : "fujimakishouten/debian-stretch64",
-            "artifact_type" : "vagrant.box",
-            "metadata" : {
-                "description" : "{{user `description`}}",
-                "provider" : "virtualbox",
-                "version" : "{{user `box_version`}}"
-            },
-            "token" : "{{user `atlas_token`}}",
-            "type" : "atlas"
         }
-    ]]
+    }],
+    "post-processors" : [[{
+            "type": "vagrant",
+            "output": "{{user `vm_name`}}.box"
+        }, {
+            "type": "vagrant-cloud",
+            "access_token": "{{user `atlas_token`}}",
+            "box_tag": "{{user `box_tag`}}",
+            "version": "{{user `box_version`}}"
+    }]]
 }
-
