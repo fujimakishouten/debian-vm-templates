@@ -4,8 +4,8 @@
         "atlas_token" : "{{env `ATLAS_TOKEN`}}",
         "box_tag": "fujimakishouten/debian-buster64",
         "box_changelog" : "Daily build",
-        "box_version" : "10.0.0.20170704",
-        "description" : "Debian buster 2017.07.04",
+        "box_version" : "10.0.0.20170712",
+        "description" : "Debian buster 2017.07.12",
         "vm_name" : "debian-buster"
     },
     "builders" : [{
@@ -30,7 +30,7 @@
         "hard_drive_interface" : "sata",
         "headless" : false,
         "http_directory" : "http",
-        "iso_checksum" : "c0dcf7c40620308f22c0802da0354591e1ba5c33ac005f7a587a06acc8a5effe83d4bda0498a2f5703ae1a7aa0d5aa903e7d4e76177d9ad91117dea1cebbb6cb",
+        "iso_checksum" : "812543758c0bc240465d06e989cd2d9508ea3cda3a86b1dfbff268a3a46aa298143d27a3953d1c4cf519a7eb23027487fd87f2246eaa816b74e1cc3af35613b9",
         "iso_checksum_type" : "sha512",
         "iso_url" : "https://cdimage.debian.org/cdimage/daily-builds/daily/arch-latest/amd64/iso-cd/debian-testing-amd64-netinst.iso",
         "shutdown_command" : "sudo /sbin/halt -p",
@@ -72,6 +72,7 @@
             "type": "vagrant-cloud",
             "access_token": "{{user `atlas_token`}}",
             "box_tag": "{{user `box_tag`}}",
-            "version": "{{user `box_version`}}"
+            "version": "{{user `box_version`}}",
+            "version_description": "{{user `description`}}"
     }]]
 }
