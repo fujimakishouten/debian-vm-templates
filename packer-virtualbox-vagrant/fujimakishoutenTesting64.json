@@ -4,8 +4,8 @@
         "atlas_token" : "{{env `ATLAS_TOKEN`}}",
         "box_tag": "fujimakishouten/debian-buster64",
         "box_changelog" : "Daily build",
-        "box_version" : "10.0.0.20170712",
-        "description" : "Debian buster 2017.07.12",
+        "box_version" : "10.0.0.20170731",
+        "description" : "Debian buster 2017.07.31",
         "vm_name" : "debian-buster"
     },
     "builders" : [{
@@ -30,7 +30,7 @@
         "hard_drive_interface" : "sata",
         "headless" : false,
         "http_directory" : "http",
-        "iso_checksum" : "812543758c0bc240465d06e989cd2d9508ea3cda3a86b1dfbff268a3a46aa298143d27a3953d1c4cf519a7eb23027487fd87f2246eaa816b74e1cc3af35613b9",
+        "iso_checksum" : "65e11111e1a928c9d808391e3741a0eeb9abd987147dc9c6596b10ff94375ae3dac156e9621052a51437513b49cd72ac4663e5cf29e52f824d9e92c87ae9026d",
         "iso_checksum_type" : "sha512",
         "iso_url" : "https://cdimage.debian.org/cdimage/daily-builds/daily/arch-latest/amd64/iso-cd/debian-testing-amd64-netinst.iso",
         "shutdown_command" : "sudo /sbin/halt -p",
