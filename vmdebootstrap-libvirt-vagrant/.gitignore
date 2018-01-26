@@ -1,8 +1,0 @@
-*.box
-*.log
-*.qcow2
-*.raw
-*.img
-*.tested
-Vagrantfile
-metadata.json

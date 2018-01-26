@@ -1,7 +1,0 @@
-config.mk
-*.box
-rootfs
-rootfs.tar.gz
-lxc-config
-metadata.json
-SHA256SUMS-lxc*
